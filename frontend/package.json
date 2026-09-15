@@ -96,7 +96,7 @@
     "tailwindcss": "3.4.17"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "resolutions": {
     "react-router": "7.15.1",
