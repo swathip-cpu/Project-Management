@@ -1,0 +1,138 @@
+{
+  "application": "ProjectHub - Manager's Project Management Web App",
+  "archetype": "Notion & Linear Inspired High-Density Productivity Workspace",
+  "theme": "Light mode primary with soft off-white canvas, crisp slate borders, and vibrant indigo interactive accents",
+  "typography": {
+    "font_family_heading": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "font_family_body": "Inter, sans-serif",
+    "font_family_mono": "'JetBrains Mono', 'Fira Code', monospace",
+    "scale": {
+      "h1": "text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900",
+      "h2": "text-xl sm:text-2xl font-semibold tracking-tight text-slate-900",
+      "h3": "text-lg font-medium text-slate-800",
+      "h4": "text-base font-medium text-slate-800",
+      "body": "text-sm text-slate-600 leading-relaxed",
+      "caption": "text-xs text-slate-500 font-medium",
+      "mono_tag": "text-xs font-mono tracking-wide text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded"
+    }
+  },
+  "colors": {
+    "canvas_bg": "#FAFBFD",
+    "surface_card": "#FFFFFF",
+    "surface_hover": "#F8FAFC",
+    "border_subtle": "#E2E8F0",
+    "border_focus": "#818CF8",
+    "primary_indigo": "#4F46E5",
+    "primary_indigo_hover": "#4338CA",
+    "primary_indigo_light": "#EEF2FF",
+    "primary_indigo_text": "#3730A3",
+    "text_primary": "#0F172A",
+    "text_secondary": "#475569",
+    "text_muted": "#94A3B8",
+    "status": {
+      "urgent": { "bg": "#FEF2F2", "text": "#991B1B", "border": "#FCA5A5", "dot": "#EF4444" },
+      "high": { "bg": "#FFF7ED", "text": "#9A3412", "border": "#FDBA74", "dot": "#F97316" },
+      "medium": { "bg": "#FEFCE8", "text": "#854D0E", "border": "#FDE047", "dot": "#EAB308" },
+      "low": { "bg": "#F0FDF4", "text": "#166534", "border": "#86EFAC", "dot": "#22C55E" },
+      "in_progress": { "bg": "#EFF6FF", "text": "#1E40AF", "border": "#93C5FD", "dot": "#3B82F6" },
+      "review": { "bg": "#F5F3FF", "text": "#5B21B6", "border": "#C4B5FD", "dot": "#8B5CF6" },
+      "completed": { "bg": "#ECFDF5", "text": "#065F46", "border": "#6EE7B7", "dot": "#10B981" }
+    }
+  },
+  "layout_and_navigation": {
+    "structure": "Fixed left sidebar navigation (60px minimized / 240px expanded), sticky minimal header with unified search and quick-actions (+ Project, + Task), main scrollable workspace with multi-tab support, and a contextual right slide-over panel for inspectable details.",
+    "sidebar_items": [
+      { "name": "Dashboard", "icon": "LayoutDashboard", "path": "/" },
+      { "name": "Projects", "icon": "FolderKanban", "path": "/projects" },
+      { "name": "Tasks & Kanban", "icon": "CheckSquare", "path": "/kanban" },
+      { "name": "Team", "icon": "Users", "path": "/team" },
+      { "name": "Files Library", "icon": "FileText", "path": "/files" },
+      { "name": "Reports & Analytics", "icon": "BarChart3", "path": "/reports" },
+      { "name": "Notifications", "icon": "Bell", "path": "/notifications" },
+      { "name": "Settings", "icon": "Settings", "path": "/settings" }
+    ],
+    "spacing_philosophy": "Linear/Notion inspired 4px grid. Generous internal card padding (p-5 to p-6), tight content grids with explicit gaps (gap-4 to gap-6). Thin hairline borders (1px solid #E2E8F0) with soft drop shadows (shadow-sm)."
+  },
+  "screens_and_components": {
+    "login": "Clean split or centered minimal card with email/password authentication, demo credentials quick-fill button, and brand indicator.",
+    "dashboard": "Manager overview with 4 KPI summary cards (Active Projects, Tasks Due, Team Size, Completion Rate), active project cards with interactive progress bar & milestones indicator, upcoming deadlines stream, and recent activity log.",
+    "projects": "Filterable grid & list view of projects, status badges (Planning, In Progress, On Hold, Completed), progress percentage, assigned lead avatars, cover thumbnail option, and Create/Edit/Archive modal dialogs.",
+    "project_detail": "Tabbed detail hub containing: Overview, Tasks, Files & Attachments, Activity Log, and Comments stream.",
+    "kanban_board": "Interactive Drag-and-Drop board with status columns (Backlog, To Do, In Progress, Under Review, Completed). Quick inline task card creation, card tags, priority badges, assigned user avatars, and drag handles.",
+    "team_management": "Grid of team members showing avatar, role, current workload meter, active tasks counter, email, and task assignment action.",
+    "files_library": "Object storage files browser with file type icons (PDF, Figma, Code, Image, Doc), file size, uploader avatar, preview modal, and download trigger.",
+    "reports_analytics": "Interactive Recharts visual analytics: Task completion rate over time (Area Chart), Team workload distribution (Bar Chart), Project status breakdown (Donut/Pie Chart), and Velocity metric cards.",
+    "notifications_center": "Unified notification feed with filter tabs (All, Mentions, Slack Alerts, System), read/unread toggle, and direct action deep-links.",
+    "settings": "Slack Webhook integration configuration panel (Webhook URL input, test alert button, alert trigger checkboxes), profile settings, and workspace preference toggles."
+  },
+  "image_urls": {
+    "team_avatars": [
+      {
+        "name": "Alex Mercer (Lead Product Manager)",
+        "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHxfHxwb3J0cmFpdCUyMGNvcnBvcmF0ZSUyMGF2YXRhciUyMGV4ZWN1dGl2ZSUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3ODk0NTc1ODh8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "Elena Rostova (Senior UX/UI Designer)",
+        "url": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMGNvcnBvcmF0ZSUyMGF2YXRhciUyMGV4ZWN1dGl2ZSUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3ODk0NTc1ODh8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "David Chen (Principal Architect)",
+        "url": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMGNvcnBvcmF0ZSUyMGF2YXRhciUyMGV4ZWN1dGl2ZSUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3ODk0NTc1ODh8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "name": "Marcus Vance (Fullstack Tech Lead)",
+        "url": "https://images.unsplash.com/photo-1718209881007-c0ecdfc00f9d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHw0fHxwb3J0cmFpdCUyMGNvcnBvcmF0ZSUyMGF2YXRhciUyMGV4ZWN1dGl2ZSUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3ODk0NTc1ODh8MA&ixlib=rb-4.1.0&q=85"
+      }
+    ],
+    "project_covers": [
+      {
+        "title": "Cloud Migration Architecture",
+        "url": "https://images.unsplash.com/photo-1522404419647-18cb51cc5c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6ODl8MHwxfHNlYXJjaHwyfHxtaW5pbWFsJTIwZGlnaXRhbCUyMHByb2plY3QlMjBhcmNoaXRlY3R1cmUlMjBkZXNpZ24lMjBjb3ZlcnxlbnwwfHx8fDE3ODk0NTc1ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "title": "Fintech Mobile App Redesign",
+        "url": "https://images.unsplash.com/photo-1548248823-ce16a73b6d49?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6ODl8MHwxfHNlYXJjaHw0fHxtaW5pbWFsJTIwZGlnaXRhbCUyMHByb2plY3QlMjBhcmNoaXRlY3R1cmUlMjBkZXNpZ24lMjBjb3ZlcnxlbnwwfHx8fDE3ODk0NTc1ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "title": "AI Knowledge Engine R&D",
+        "url": "https://images.unsplash.com/photo-1527576539890-dfa815648363?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6ODl8MHwxfHNlYXJjaHwzfHxtaW5pbWFsJTIwZGlnaXRhbCUyMHByb2plY3QlMjBhcmNoaXRlY3R1cmUlMjBkZXNpZ24lMjBjb3ZlcnxlbnwwfHx8fDE3ODk0NTc1ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "title": "Design System 3.0 Standard",
+        "url": "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6ODl8MHwxfHNlYXJjaHxfHxwb3J0cmFpdCUyMGNvcnBvcmF0ZSUyMGF2YXRhciUyMGV4ZWN1dGl2ZSUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3ODk0NTc1ODF8MA&ixlib=rb-4.1.0&q=85"
+      }
+    ]
+  },
+  "testing_attributes": {
+    "guidelines": "Every interactive and key informational element MUST have a unique role-based data-testid in kebab-case.",
+    "examples": [
+      "data-testid=\"sidebar-link-dashboard\"",
+      "data-testid=\"sidebar-link-projects\"",
+      "data-testid=\"header-search-input\"",
+      "data-testid=\"quick-add-project-button\"",
+      "data-testid=\"quick-add-task-button\"",
+      "data-testid=\"stat-card-active-projects\"",
+      "data-testid=\"stat-card-tasks-due\"",
+      "data-testid=\"stat-card-completion-rate\"",
+      "data-testid=\"kanban-column-in-progress\"",
+      "data-testid=\"kanban-task-card-101\"",
+      "data-testid=\"project-detail-tab-overview\"",
+      "data-testid=\"project-detail-tab-tasks\"",
+      "data-testid=\"project-detail-tab-files\"",
+      "data-testid=\"slack-webhook-url-input\"",
+      "data-testid=\"test-slack-alert-button\"",
+      "data-testid=\"login-email-input\"",
+      "data-testid=\"login-submit-button\""
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use standard JavaScript React components (.js / .jsx).",
+    "Utilize lucide-react icons for navigation and actions.",
+    "Utilize recharts for dashboard analytics and reports charts.",
+    "Ensure sonner is used for toast notifications (e.g., 'Slack test alert sent!', 'Task status updated').",
+    "Keep background colors soft off-white (#FAFBFD) with solid white (#FFFFFF) for card surfaces to establish clear visual contrast without overwhelming shadows.",
+    "Integrate interactive drag-and-drop or column movement for the Kanban board.",
+    "Support full CRUD operations (Create, Edit, Delete/Archive, Status Change) across Projects, Tasks, Team Members, and Files with mock state management.",
+    "Include a functional Slack notification simulator with configurable webhooks in Settings and instant alert popups/toasts."
+  ]
+}
