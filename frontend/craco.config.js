@@ -110,6 +110,14 @@ let webpackConfig = {
     },
     configure: (webpackConfig) => {
 
+      // Remove ForkTsCheckerWebpackPlugin (breaks builds on Node 24 due to a bundled
+      // ajv-keywords incompatibility). This is a JS-only project so it is not needed.
+      if (Array.isArray(webpackConfig.plugins)) {
+        webpackConfig.plugins = webpackConfig.plugins.filter(
+          (p) => p && p.constructor && p.constructor.name !== "ForkTsCheckerWebpackPlugin",
+        );
+      }
+
       // Add ignored patterns to reduce watched directories
         webpackConfig.watchOptions = {
           ...webpackConfig.watchOptions,
