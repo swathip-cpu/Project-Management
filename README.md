@@ -1,75 +1,166 @@
-# ProjectHub
+<div align="center">
 
-A clean, Notion/Linear-inspired project management workspace for a solo manager. Track every project, task, teammate, file, comment and metric in one place — with Slack notifications baked in.
+# 📋 ProjectHub
 
-Login → Dashboard → Projects → Kanban → Reports, all under an indigo-accented, minimal UI.
+**A clean, Notion-inspired project management workspace for a solo manager.**
+Track projects, tasks, teammates, files, activity and analytics — with Slack alerts baked in.
 
-## What the app does
+<br />
 
-- **Manager login** (JWT email + password, single-tenant)
-- **Dashboard** — live KPIs (active projects, tasks due, team size, completion rate), recent projects with progress bars, upcoming deadlines, activity feed
-- **Projects** — create / edit / archive, statuses, milestones, cover images, due dates; grid & list views
-- **Project detail** — tabs for Overview, Tasks, Files, Activity, Comments
-- **Tasks & Kanban** — HTML5 drag-and-drop across `Backlog → To Do → In Progress → In Review → Done`, priority, assignee, due date
-- **Team members** — add / edit / remove members with auto-computed workload
-- **Files & attachments** — multipart upload to Emergent Object Storage, type-aware icons, download and soft-delete
-- **Comments & activity log** — threaded comments per project, auto-generated timeline of everything that happens
-- **Reports & analytics** — area chart (weekly completions), pie (status mix), bar (team workload), top-projects table (Recharts)
-- **Notifications center** — in-app inbox with unread badge, tab filters, mark-all-read
-- **Slack integration** — Incoming Webhook + per-event toggles (task created / assigned / completed, new comment, project status change, deadline approaching)
-- **Demo data** — 3 sample projects, 4 team members and 13 tasks are seeded on first run
+![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-6-47A248?logo=mongodb&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-3-38BDF8?logo=tailwindcss&logoColor=white)
+![Node](https://img.shields.io/badge/Node-22.x-3C873A?logo=node.js&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)
+![License](https://img.shields.io/badge/license-Private-lightgrey)
 
-## Tech stack
+</div>
+
+---
+
+## ✨ Highlights
+
+- 🔐 **JWT manager login** — single-tenant, bcrypt hashed, seeded from `.env`
+- 📊 **Live dashboard** — KPIs, recent projects with progress bars, upcoming deadlines, activity feed
+- 🗂️ **Projects & milestones** — grid + list views, statuses, covers, due dates, archiving
+- 🧩 **Kanban board** — HTML5 drag-and-drop across five columns with instant Slack + activity updates
+- 👥 **Team members** — CRUD with auto-computed workload
+- 📎 **Files & attachments** — multipart uploads to Emergent Object Storage, download & soft-delete
+- 💬 **Comments & activity log** — threaded discussions and an auto-generated timeline
+- 📈 **Analytics** — Recharts-powered area / pie / bar charts, top-projects table
+- 🔔 **Notifications** — in-app inbox with an unread badge + Slack webhook alerts
+- 🌱 **Demo data** — 3 sample projects, 4 members and 13 tasks seeded on first run
+
+---
+
+## 🛠 Tech Stack
+
+<table>
+<tr>
+<td valign="top" width="50%">
 
 **Frontend**
-- React 19 (JavaScript, CRA + CRACO)
-- TailwindCSS 3 + shadcn/ui component library
+- React 19 (JavaScript)
+- CRA + CRACO
+- TailwindCSS 3 + shadcn/ui
 - React Router 7
-- TanStack Query (server state)
-- Recharts (analytics charts)
-- Sonner (toasts), Lucide React (icons)
+- TanStack Query
+- Recharts, Sonner, Lucide
+
+</td>
+<td valign="top" width="50%">
 
 **Backend**
 - FastAPI (Python 3.11+)
-- Motor (async MongoDB driver)
-- PyJWT + bcrypt (auth)
-- Pydantic (validation)
-- Emergent Object Storage proxy (file uploads)
-- Slack Incoming Webhooks (notifications)
+- Motor (async MongoDB)
+- PyJWT + bcrypt
+- Pydantic v2
+- Emergent Object Storage
+- Slack Incoming Webhooks
 
-**Data**
-- MongoDB (single database, collections: `users`, `projects`, `tasks`, `members`, `comments`, `activity`, `notifications`, `files`, `settings`)
+</td>
+</tr>
+</table>
 
-## Folder structure
+---
 
+## 🚀 Quick Start
+
+> Requires **Node 22** (or 20+), **Python 3.11+**, **MongoDB** running locally, and **Yarn 1.x**.
+
+### 1. Clone
+
+```bash
+git clone <your-repo-url> projecthub && cd projecthub
 ```
-/app
+
+### 2. Backend
+
+```bash
+cd backend
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# Create backend/.env — see the table below
+uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+```
+
+The first startup automatically seeds the manager account **plus** 3 demo projects, 4 team members and 13 tasks.
+
+### 3. Frontend
+
+```bash
+cd ../frontend
+yarn install
+echo 'REACT_APP_BACKEND_URL=http://localhost:8001' > .env
+yarn start
+```
+
+Open **http://localhost:3000** and sign in with the credentials from your backend `.env`.
+
+### 4. (Optional) Slack alerts
+
+Go to **Settings → Slack integration**, paste an [Incoming Webhook URL](https://api.slack.com/messaging/webhooks), toggle events, and click **Send test alert**.
+
+---
+
+## 🔑 Environment Variables
+
+### `backend/.env`
+
+| Variable            | Required | Description                                                      |
+|---------------------|:--------:|------------------------------------------------------------------|
+| `MONGO_URL`         |    ✅    | Mongo connection string, e.g. `mongodb://localhost:27017`        |
+| `DB_NAME`           |    ✅    | Mongo database name                                              |
+| `JWT_SECRET`        |    ✅    | 32+ byte random hex, signs access tokens                         |
+| `ADMIN_EMAIL`       |    ✅    | Seeded manager email (used to log in)                            |
+| `ADMIN_PASSWORD`    |    ✅    | Seeded manager password                                          |
+| `ADMIN_NAME`        |    —     | Display name for the manager                                     |
+| `CORS_ORIGINS`      |    —     | Comma-separated allow-list, defaults to `*`                      |
+| `EMERGENT_LLM_KEY`  |    —     | Enables Emergent Object Storage for file uploads                 |
+| `APP_NAME`          |    —     | Storage namespace, defaults to `projecthub`                      |
+
+### `frontend/.env`
+
+| Variable                | Required | Description                                        |
+|-------------------------|:--------:|----------------------------------------------------|
+| `REACT_APP_BACKEND_URL` |    ✅    | Backend base URL, **no trailing slash**            |
+| `WDS_SOCKET_PORT`       |    —     | Dev-server socket port behind a proxy (e.g. `443`) |
+
+> All frontend requests go to `${REACT_APP_BACKEND_URL}/api/…`. All backend routes are prefixed with `/api`.
+
+---
+
+## 📁 Project Structure
+
+```text
+projecthub/
 ├── backend/
-│   ├── server.py            # FastAPI app — all /api routes, auth, seeding, storage, Slack
+│   ├── server.py            # FastAPI app — routes, auth, seeding, storage, Slack
 │   ├── requirements.txt
-│   └── .env                 # MONGO_URL, DB_NAME, JWT_SECRET, ADMIN_EMAIL/PASSWORD, EMERGENT_LLM_KEY
+│   └── .env                 # secrets & config (git-ignored)
 │
 ├── frontend/
-│   ├── package.json         # engines: node 22.x
-│   ├── craco.config.js      # webpack overrides (strips ForkTsCheckerWebpackPlugin)
-│   ├── vercel.json          # framework=CRA, buildCommand=yarn build, outputDirectory=build
+│   ├── package.json         # engines.node = "22.x"
+│   ├── craco.config.js      # webpack overrides
+│   ├── vercel.json          # Vercel build config
 │   ├── .nvmrc               # 22.11.0
-│   ├── .yarnrc              # ignore-engines for local dev
+│   ├── .yarnrc              # local ignore-engines for Node 20 dev containers
 │   ├── tailwind.config.js
 │   ├── public/
 │   └── src/
-│       ├── index.js         # React root, QueryClientProvider
-│       ├── App.js           # Router + AuthProvider + Toaster
-│       ├── index.css        # Tailwind + design tokens (Inter font, indigo palette)
-│       ├── lib/api.js       # axios instance, JWT interceptor, file URL helper
-│       ├── context/
-│       │   └── AuthContext.js
+│       ├── index.js
+│       ├── App.js
+│       ├── index.css
+│       ├── lib/api.js               # axios + JWT interceptor
+│       ├── context/AuthContext.js
 │       ├── components/
-│       │   ├── ui/          # shadcn primitives (Button, Card, Dialog, Select, …)
+│       │   ├── ui/                  # shadcn primitives
 │       │   └── app/
-│       │       ├── Layout.jsx         # Sidebar + top bar
-│       │       ├── KanbanBoard.jsx    # drag-and-drop board
-│       │       └── FileList.jsx       # upload / list / download
+│       │       ├── Layout.jsx       # sidebar + top bar
+│       │       ├── KanbanBoard.jsx  # drag-and-drop board
+│       │       └── FileList.jsx     # upload / list / download
 │       └── pages/
 │           ├── Login.jsx
 │           ├── Dashboard.jsx
@@ -87,95 +178,62 @@ Login → Dashboard → Projects → Kanban → Reports, all under an indigo-acc
     └── test_credentials.md
 ```
 
-## Environment variables
+---
 
-### `backend/.env`
+## ☁️ Deployment — Vercel (frontend)
 
-| Variable            | Required | Description                                                                |
-|---------------------|----------|----------------------------------------------------------------------------|
-| `MONGO_URL`         | ✅       | Mongo connection string (e.g. `mongodb://localhost:27017`)                 |
-| `DB_NAME`           | ✅       | Database name (e.g. `test_database`)                                       |
-| `JWT_SECRET`        | ✅       | Random 32+ byte hex string used to sign access tokens                      |
-| `ADMIN_EMAIL`       | ✅       | Seeded manager email (login)                                               |
-| `ADMIN_PASSWORD`    | ✅       | Seeded manager password (login)                                            |
-| `ADMIN_NAME`        | ⬜       | Display name for the manager                                               |
-| `CORS_ORIGINS`      | ⬜       | Comma-separated origins allowed by CORS. Defaults to `*`                   |
-| `EMERGENT_LLM_KEY`  | ⬜       | Enables file uploads via Emergent Object Storage. If absent, uploads 503   |
-| `APP_NAME`          | ⬜       | Namespacing for stored files (defaults to `projecthub`)                    |
+The frontend is Vercel-ready out of the box.
 
-### `frontend/.env`
+1. **Import** the repo in Vercel.
+2. Set **Root Directory** → `frontend`.
+3. Add the env var **`REACT_APP_BACKEND_URL`** pointing at your deployed backend.
+4. **Deploy.** Vercel reads `engines.node = "22.x"` and `frontend/vercel.json` automatically:
 
-| Variable                  | Required | Description                                                    |
-|---------------------------|----------|----------------------------------------------------------------|
-| `REACT_APP_BACKEND_URL`   | ✅       | Base URL of the backend (without a trailing slash)             |
-| `WDS_SOCKET_PORT`         | ⬜       | Dev-server socket port when behind a proxy (usually `443`)     |
-
-> All API calls from the frontend are made to `${REACT_APP_BACKEND_URL}/api/…`. All backend routes are prefixed with `/api`.
-
-## Setup — run locally
-
-Prerequisites: Node 22 (recommended) or 20+, Python 3.11+, MongoDB running locally, Yarn 1.x.
-
-### 1. Backend
-
-```bash
-cd backend
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-# Fill in backend/.env — at minimum MONGO_URL, DB_NAME, JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD
-
-uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+```json
+{
+  "framework": "create-react-app",
+  "installCommand": "yarn install --network-timeout 600000",
+  "buildCommand": "yarn build",
+  "outputDirectory": "build"
+}
 ```
 
-The first startup seeds the admin user plus 3 demo projects / 4 members / 13 tasks.
+> **Why Node 22?** Node 20 is deprecated on Vercel, and Node 24 breaks CRA's bundled `fork-ts-checker-webpack-plugin`. 22.x is the sweet spot.
 
-### 2. Frontend
+### Backend hosting
 
-```bash
-cd frontend
-yarn install
-# Point the frontend at your backend
-echo 'REACT_APP_BACKEND_URL=http://localhost:8001' > .env
+The API is a plain FastAPI app — deploy it wherever Python + Mongo are convenient (Emergent, Fly.io, Render, Railway, Heroku, a VM). Make sure:
 
-yarn start
-```
+- `MONGO_URL` reaches a running MongoDB
+- `CORS_ORIGINS` includes your Vercel frontend origin (or leave `*`)
 
-The app is now at `http://localhost:3000`. Sign in with the `ADMIN_EMAIL` / `ADMIN_PASSWORD` values from your backend `.env`.
+---
 
-### 3. (Optional) Slack alerts
-
-Open **Settings → Slack integration**, paste an [Incoming Webhook URL](https://api.slack.com/messaging/webhooks), toggle the events you want and click **Send test alert** to verify.
-
-## Deployment notes — Vercel
-
-The frontend is deployable to Vercel out of the box.
-
-1. **Import the repo** in Vercel and set **Root Directory = `frontend`**.
-2. Vercel will read `frontend/package.json` `engines.node = "22.x"` and pick Node 22 automatically (Node 20 is deprecated on Vercel and Node 24 breaks CRA's bundled `fork-ts-checker-webpack-plugin`).
-3. `frontend/vercel.json` already specifies:
-   - `framework: create-react-app`
-   - `installCommand: yarn install --network-timeout 600000`
-   - `buildCommand: yarn build`
-   - `outputDirectory: build`
-4. Add the environment variable **`REACT_APP_BACKEND_URL`** in the Vercel project (Settings → Environment Variables), pointing at your deployed backend.
-5. Redeploy. That's it — no other tweaks required.
-
-**Backend hosting.** The API is a plain FastAPI app; deploy it wherever Python + Mongo are convenient (Emergent one-click deploy, Fly.io, Render, Railway, Heroku, a VM, etc.). Make sure `MONGO_URL` points at a reachable MongoDB and that CORS allows the Vercel frontend origin (or leave `CORS_ORIGINS=*`).
-
-### Local dev on Node 20
-
-The engines pin is strict for Vercel but ignored locally via `frontend/.yarnrc` (`ignore-engines true`). Node 20+ works fine for development.
-
-## Test credentials
+## 🧪 Test Credentials
 
 ```
-Email:    <ADMIN_EMAIL from backend/.env>   (default in this repo: swathi.p@emergent.sh)
-Password: <ADMIN_PASSWORD from backend/.env> (default in this repo: admin123)
+Email:    <ADMIN_EMAIL   from backend/.env>   # default in this repo: swathi.p@emergent.sh
+Password: <ADMIN_PASSWORD from backend/.env>  # default in this repo: admin123
 ```
 
-Rotate both before shipping to production.
+**Rotate both before shipping to production.**
 
-## License
+---
 
-Private / internal.
+## 🗺️ Roadmap
+
+- [ ] Task detail drawer with inline editing & per-task comments
+- [ ] 24-hour deadline reminders (Slack + in-app)
+- [ ] Weekly Monday-morning digest email
+- [ ] AI project recap + next-task suggestions (Universal LLM key)
+- [ ] Gantt / timeline view
+- [ ] Recurring tasks & templates
+- [ ] Read-only client share links
+
+---
+
+<div align="center">
+
+Made with ☕ and shadcn/ui.
+
+</div>
